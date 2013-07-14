@@ -1,0 +1,43 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:0.5.+'
+  }
+}
+
+apply plugin: 'android-library'
+apply plugin: 'maven-publish'
+
+
+group = 'com.aliyun.android'
+version = '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.6'
+}
+
+android {
+  compileSdkVersion 14
+  buildToolsVersion '17'
+}
+
+android.libraryVariants
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact bundleRelease
+        }
+    }
+
+    repositories {
+        mavenLocal();
+    }
+}
